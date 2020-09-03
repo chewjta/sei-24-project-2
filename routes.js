@@ -25,7 +25,7 @@ app.get('/accounts/register',accountsControllerCallbacks.registerForm);
 app.get('/accounts/login',accountsControllerCallbacks.loginForm);
 app.post('/register',accountsControllerCallbacks.register);
 app.post('/login',accountsControllerCallbacks.login);
-
+app.get('/questions', questionsControllerCallbacks.dashboard)
 
 // app.post('/login',accountsControllerCallbacks.login);
   // app.get('/', pokemonControllerCallbacks.index);

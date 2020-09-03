@@ -1,3 +1,5 @@
 module.exports = (dbPoolInstance) => {
-    return {}
+    return {
+
+    }
 }
