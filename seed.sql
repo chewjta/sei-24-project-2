@@ -16,7 +16,7 @@ VALUES
 INSERT INTO questions
 (user_id, topic, question)
 VALUES
-('2', 'arrays', 'what are arrays');
+('2', 'maths', 'what are arrays2');
 
 INSERT INTO answers
 (question_id, user_id, answer)
