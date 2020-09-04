@@ -87,7 +87,7 @@ var myChart = new Chart(ctx3, {
     data: {
         labels: questionerlabel,
         datasets: [{
-            label: '#Questions by Topics',
+            label: 'Who has the most questions',
             data: questionerdata,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

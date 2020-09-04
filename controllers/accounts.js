@@ -27,12 +27,13 @@ let login = (request,response) => {
     password = sha256(password);
     db.accounts.getLogin(username,password,(err,result)=>{
       if (result === "no such user!" || result === "wrong password"){
-        res.status(404).send(result)
+        response.status(404).send(result)
       } else{
         response.cookie('username',result.username);
         response.cookie('type',result.type);
+        response.cookie('username',result.username);
         response.cookie('logIn', 'true');
-        response.render('accounts/home')
+        response.redirect('/dashboard')
       }
     })
 }
