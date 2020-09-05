@@ -63,6 +63,10 @@ let questionsList = data.map(item=>{
           <form id='allquestions' method='GET' action='/questions'>
             <input type='submit' value='View All Questions'/>
           </form>
+<br />
+          <form method ="post" action= "/logout">
+          <input type="submit" value="logout"/>
+        </form>
           <script>
           var answeredNum = {answered};
           var unansweredNum = {unanswered};

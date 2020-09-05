@@ -7,18 +7,22 @@ export default class Allquestions extends React.Component {
     let unanswered = [];
     data.forEach(item=>{
         if(!item.answer){
-            unanswered.push(item.question)
+            unanswered.push(item)
         } else {
-            answered.push(item.question)
+            answered.push(item)
         }
     })
+
+
     let answeredList = answered.map(item=>{
-        return <li>{item}</li>
+        return <li><a href={`/questions/${item.id}`}>{item.question}</a></li>
     })
 
     let unansweredList = unanswered.map(item=>{
-        return <li>{item}</li>
+        return <li><a href={`/questions/${item.id}`}>{item.question}</a></li>
     })
+
+
 
     return (
       <html>

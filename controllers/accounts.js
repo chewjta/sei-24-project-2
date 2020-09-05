@@ -31,18 +31,29 @@ let login = (request,response) => {
       } else{
         response.cookie('username',result.username);
         response.cookie('type',result.type);
-        response.cookie('username',result.username);
         response.cookie('logIn', 'true');
+        if(result.type == 'teacher'){
         response.redirect('/dashboard')
+    }
       }
     })
 }
+
+
+let logout = (request,response) =>{
+    response.clearCookie('username');
+    response.clearCookie('type');
+    response.cookie('logIn','false');
+    response.redirect('/')
+  }
+
 
     return{
     home,
     registerForm,
     loginForm,
     register,
-    login
+    login,
+    logout
     }
 }
