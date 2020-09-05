@@ -6,12 +6,16 @@ export default class Dashboard extends React.Component {
     let unanswered = 0;
     let questioner = [];
     let topics=[];
+    let idenCheck = [];
     let {data} = this.props;
         data.forEach(item=>{
             if(!item.answer){
                 unanswered+=1;
             } else {
-                answered+=1;
+                if(!idenCheck.includes(item.id)){
+            idenCheck.push(item.id);
+            answered+=1;
+            }
             }
         })
         data.forEach(item=>{

@@ -5,11 +5,16 @@ export default class Allquestions extends React.Component {
     let {data} = this.props;
     let answered = [];
     let unanswered = [];
+    let idenCheck = [];
+
     data.forEach(item=>{
         if(!item.answer){
             unanswered.push(item)
-        } else {
-            answered.push(item)
+        } else if (item.answer){
+            if(!idenCheck.includes(item.id)){
+            idenCheck.push(item.id);
+            answered.push(item);
+            }
         }
     })
 

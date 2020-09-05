@@ -30,6 +30,7 @@ let login = (request,response) => {
         response.status(404).send(result)
       } else{
         response.cookie('username',result.username);
+        response.cookie('userId',result.id)
         response.cookie('type',result.type);
         response.cookie('logIn', 'true');
         if(result.type == 'teacher'){

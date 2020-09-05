@@ -9,11 +9,7 @@ export default class Onequestion extends React.Component {
     let topic = data[0].topic;
 
     let answersList = data.map(item=>{
-        return <p>{item.answer}<form method ="get" action= {`/questions/delete/${item.id}`}>
-          <input type="submit" value="delete"/>
-        </form><form method ="get" action= {`/questions/delete/${item.id}`}>
-          <input type="submit" value="delete"/>
-        </form></p>})
+        return <p>{item.answer}</p>})
 
    let id = data[0].id;
 
@@ -35,7 +31,11 @@ export default class Onequestion extends React.Component {
              <br />
              <br />
              <button id="revealans">Reveal</button>
-             <div id="answerslist" style={{display:'none'}}>{answersList}</div>
+             <div id="answerslist" style={{display:'none',overflowWrap:'break-word',width:'300px'}}>{answersList}
+             <form method ="get" action= {`/answers/add/${id}`}>
+          <input type="submit" value="Add an answer"/>
+        </form>
+             </div>
         </div><br />
         <script src="/questionscript.js"></script>
         </body>

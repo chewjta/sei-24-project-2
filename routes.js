@@ -33,8 +33,8 @@ app.get('/questions/:id',questionsControllerCallbacks.individualQuestion)
 app.get('/dashboard', questionsControllerCallbacks.dashboard)
 app.get('/questions',questionsControllerCallbacks.allQuestions)
 app.post('/logout',accountsControllerCallbacks.logout);
-
-
+app.get('/answers/add/:id',answersControllerCallbacks.answerForm)
+app.post('/answers/add',answersControllerCallbacks.answerAdded)
 
 // app.post('/login',accountsControllerCallbacks.login);
   // app.get('/', pokemonControllerCallbacks.index);
