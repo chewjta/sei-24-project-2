@@ -1,6 +1,6 @@
 module.exports = (dbPoolInstance) => {
 let getDashboard = (user,callback) => {
-    let query = `SELECT questions.user_id AS questioner, answers.user_id AS answerer,questions.topic, questions.question,answers.answer,accounts.username FROM answers RIGHT JOIN questions ON answers.question_id = questions.id LEFT JOIN accounts ON questions.user_id = accounts.id ORDER BY questions.id DESC`
+    let query = `SELECT questions.user_id AS questioner, answers.user_id AS answerer,questions.topic, questions.question,answers.answer,accounts.username,questions.id AS questionid FROM answers RIGHT JOIN questions ON answers.question_id = questions.id LEFT JOIN accounts ON questions.user_id = accounts.id ORDER BY questions.id DESC`
     dbPoolInstance.query(query,(err,result)=>{
         callback(err,result)
     })
@@ -50,6 +50,14 @@ let getDeleteQuestion = (question_id,callback) => {
     })
 }
 
+let getAddNewQuestion = (userId,question,topic,callback) => {
+    let query = `INSERT INTO questions (user_id,topic,question) VALUES ('${userId}','${topic}','${question}')`;
+    dbPoolInstance.query(query,(err, result) => {
+        callback(err,result)
+    })
+}
+
+
     return {
         getDashboard,
         getAllQuestions,
@@ -57,6 +65,7 @@ let getDeleteQuestion = (question_id,callback) => {
         getEditQuestionForm,
         getEditQuestion,
         getDeleteQuestionForm,
-        getDeleteQuestion
+        getDeleteQuestion,
+        getAddNewQuestion
     }
 }

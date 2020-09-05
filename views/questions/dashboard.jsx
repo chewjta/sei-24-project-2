@@ -7,6 +7,7 @@ export default class Dashboard extends React.Component {
     let questioner = [];
     let topics=[];
     let idenCheck = [];
+    let idenCheck2 = [];
     let {data} = this.props;
         data.forEach(item=>{
             if(!item.answer){
@@ -19,9 +20,15 @@ export default class Dashboard extends React.Component {
             }
         })
         data.forEach(item=>{
+            if(!idenCheck2.includes(item.questionid)){
+            idenCheck2.push(item.questionid);
             questioner.push(item.username);
             topics.push(item.topic);
+            }
+
         })
+
+        console.log(data)
 
 const countObj = (arr) => {
     let count = {};
@@ -41,7 +48,6 @@ let questionerLabel = Object.keys(questioner).join(',');
 let topicsData = Object.values(topics).join(',');
 let topicsLabel = Object.keys(topics).join(',');
 
-console.log(topicsData,topicsLabel)
 
 let questionsList = data.map(item=>{
     if(!item.answer){

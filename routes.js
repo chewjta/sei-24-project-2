@@ -29,12 +29,18 @@ app.get('/questions/delete/:id', questionsControllerCallbacks.deleteQuestionForm
 app.delete('/questions/delete/:id',questionsControllerCallbacks.deleteQuestion)
 app.get('/questions/edit/:id', questionsControllerCallbacks.editQuestionForm);
 app.put('/questions/edit/:id',questionsControllerCallbacks.editQuestion)
+app.get('/questions/new',questionsControllerCallbacks.newQuestionForm)
+app.post('/questions/add',questionsControllerCallbacks.addNewQuestion)
 app.get('/questions/:id',questionsControllerCallbacks.individualQuestion)
 app.get('/dashboard', questionsControllerCallbacks.dashboard)
 app.get('/questions',questionsControllerCallbacks.allQuestions)
 app.post('/logout',accountsControllerCallbacks.logout);
 app.get('/answers/add/:id',answersControllerCallbacks.answerForm)
 app.post('/answers/add',answersControllerCallbacks.answerAdded)
+app.get('/answers/edit/:id',answersControllerCallbacks.editAnswerForm)
+app.put('/answers/edit/:id',answersControllerCallbacks.editAnswer)
+app.get('/answers/delete/:id',answersControllerCallbacks.deleteAnswerForm)
+app.delete('/answers/delete/:id',answersControllerCallbacks.deleteAnswer)
 
 // app.post('/login',accountsControllerCallbacks.login);
   // app.get('/', pokemonControllerCallbacks.index);

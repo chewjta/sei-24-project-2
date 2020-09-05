@@ -38,6 +38,12 @@ export default class Allquestions extends React.Component {
           <ul>{unansweredList}</ul>
           <h5>Answered Questions:</h5>
           <ul>{answeredList}</ul>
+
+
+        <form id='newquestion' method='GET' action='/questions/new'>
+            <input type='submit' value='Add a new question'/>
+          </form>
+
         </body>
       </html>
       );

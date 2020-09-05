@@ -9,7 +9,18 @@ export default class Onequestion extends React.Component {
     let topic = data[0].topic;
 
     let answersList = data.map(item=>{
-        return <p>{item.answer}</p>})
+        if(item.answer){
+            return <div>
+             {item.answer}
+          <form method ="get" action= {`/answers/edit/${item.answersid}`}>
+          <input type="submit" value="edit"/>
+        </form>
+        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
+          <input type="submit" value="delete"/>
+        </form>
+         </div>
+        }
+    })
 
    let id = data[0].id;
 

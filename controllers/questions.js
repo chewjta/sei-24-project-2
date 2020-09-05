@@ -74,6 +74,23 @@ let deleteQuestion = (request,response) => {
     })
 }
 
+let newQuestionForm = (request,response) => {
+    response.render('questions/new')
+}
+
+let addNewQuestion = (request,response) => {
+    let {userId} = request.cookies;
+    let {question,topic} = request.body;
+    question = question.replace(/[\"\'\`]/g, "");
+    db.questions.getAddNewQuestion(userId,question,topic,(err,result)=>{
+        if(err){
+            console.log(err)
+            response.status(500).send("error in creating question!")
+        } else {
+            response.redirect(`/questions`)
+        }
+    })
+}
 
     return{
         dashboard,
@@ -82,6 +99,8 @@ let deleteQuestion = (request,response) => {
         editQuestionForm,
         editQuestion,
         deleteQuestionForm,
-        deleteQuestion
+        deleteQuestion,
+        newQuestionForm,
+        addNewQuestion
     }
 }
