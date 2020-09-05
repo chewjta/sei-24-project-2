@@ -43,6 +43,10 @@ export default class Allquestions extends React.Component {
         <form id='newquestion' method='GET' action='/questions/new'>
             <input type='submit' value='Add a new question'/>
           </form>
+          <br /> <br />
+<form id='newquestion' method='GET' action='/dashboard'>
+            <input type='submit' value='Back to home'/>
+          </form>
 
         </body>
       </html>

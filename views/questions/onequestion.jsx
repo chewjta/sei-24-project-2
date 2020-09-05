@@ -1,8 +1,7 @@
 var React = require("react");
-
+var marked = require('marked')
 export default class Onequestion extends React.Component {
   render() {
-    console.log(this.props)
     let {data} = this.props;
 
     let question = data[0].question;
@@ -10,8 +9,11 @@ export default class Onequestion extends React.Component {
 
     let answersList = data.map(item=>{
         if(item.answer){
+            if(item.markdown){
+                if(item.verified){
+                item.answer=marked(item.answer)
             return <div>
-             {item.answer}
+             <div style={{color:'green'}}dangerouslySetInnerHTML={{__html: item.answer}}></div>
           <form method ="get" action= {`/answers/edit/${item.answersid}`}>
           <input type="submit" value="edit"/>
         </form>
@@ -19,6 +21,39 @@ export default class Onequestion extends React.Component {
           <input type="submit" value="delete"/>
         </form>
          </div>
+     } item.answer=marked(item.answer);
+     return <div>
+             <div dangerouslySetInnerHTML={{__html: item.answer}}></div>
+          <form method ="get" action= {`/answers/edit/${item.answersid}`}>
+          <input type="submit" value="edit"/>
+        </form>
+        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
+          <input type="submit" value="delete"/>
+        </form>
+         </div>
+     } else {
+        if(item.verified){
+            return <div>
+                <p style={{color:'green'}}>{item.answer}</p>
+            <form method ="get" action= {`/answers/edit/${item.answersid}`}>
+          <input type="submit" value="edit"/>
+        </form>
+        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
+          <input type="submit" value="delete"/>
+        </form>
+        </div>
+        }
+        return <div>
+                {item.answer}
+            <form method ="get" action= {`/answers/edit/${item.answersid}`}>
+          <input type="submit" value="edit"/>
+        </form>
+        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
+          <input type="submit" value="delete"/>
+        </form>
+        </div>
+     }
+
         }
     })
 
@@ -26,7 +61,6 @@ export default class Onequestion extends React.Component {
 
     return (
       <html>
-        <head />
         <body>
          <div>Question: {question}
 <form method ="get" action= {`/questions/edit/${id}`}>
@@ -48,6 +82,11 @@ export default class Onequestion extends React.Component {
         </form>
              </div>
         </div><br />
+        <div>
+            <form method ="get" action= {`/questions`}>
+          <input type="submit" value="Back to questions page"/>
+        </form>
+        </div>
         <script src="/questionscript.js"></script>
         </body>
       </html>

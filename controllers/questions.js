@@ -80,9 +80,9 @@ let newQuestionForm = (request,response) => {
 
 let addNewQuestion = (request,response) => {
     let {userId} = request.cookies;
-    let {question,topic} = request.body;
+    let {question,topic,markdown} = request.body;
     question = question.replace(/[\"\'\`]/g, "");
-    db.questions.getAddNewQuestion(userId,question,topic,(err,result)=>{
+    db.questions.getAddNewQuestion(userId,question,topic,markdown,(err,result)=>{
         if(err){
             console.log(err)
             response.status(500).send("error in creating question!")

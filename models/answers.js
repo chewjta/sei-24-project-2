@@ -9,8 +9,8 @@ let getAnswerForm = (id,callback) => {
     })
 }
 
-let getAnswerAdded = (id,username,answer,userId,callback) => {
-let query = `INSERT INTO answers (question_id,user_id,answer) VALUES ('${id}','${userId}','${answer} ----- ${username}')`
+let getAnswerAdded = (id,username,answer,userId,markdown,callback) => {
+let query = `INSERT INTO answers (question_id,user_id,answer,markdown) VALUES ('${id}','${userId}','${answer} ----- ${username}','${markdown}')`
 dbPoolInstance.query(query,(err,result)=>{
         callback(err,result)
     })
@@ -24,9 +24,9 @@ let getEditAnswerForm = (id,callback) => {
 })
 }
 
-let getEditAnswer = (answer,answer_id,callback) => {
-    let values = [answer,answer_id];
-    let query = `UPDATE answers SET answer=$1WHERE id=$2`
+let getEditAnswer = (answer,answer_id,verified,callback) => {
+    let values = [answer,answer_id,verified];
+    let query = `UPDATE answers SET answer=$1,verified=$3 WHERE id=$2`
     dbPoolInstance.query(query,values,(err, result) => {
         callback(err,result)
     })

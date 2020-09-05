@@ -1,4 +1,17 @@
 
+var span = document.getElementById('span');
+
+function time() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  span.innerText = h + ":" + m + ":" + s;
+}
+
+setInterval(time, 1000);
+
+
 var topiclabel = topicsLabels.split(',');
 var topicdata = topicsDatas.split(',');
 var questionerdata = questionerDatas.split(',');

@@ -10,9 +10,9 @@ let answerForm = (request,response) => {
 
 let answerAdded = (request, response) => {
     let {username,userId} = request.cookies;
-    let {id,answer} = request.body;
+    let {id,answer,markdown} = request.body;
     answer = answer.replace(/[\"\'\`]/g, "");
-    db.answers.getAnswerAdded(id,username,answer,userId,(err,result)=>{
+    db.answers.getAnswerAdded(id,username,answer,userId,markdown,(err,result)=>{
             response.redirect(`/questions/${id}`)
         })
 }
@@ -30,8 +30,8 @@ let editAnswerForm = (request,response) => {
     }
 
 let editAnswer = (request,response) => {
-    let {answer_id,question_id,answer} = request.body;
-    db.answers.getEditAnswer(answer,answer_id,(err,result)=>{
+    let {answer_id,question_id,answer,verified} = request.body;
+    db.answers.getEditAnswer(answer,answer_id,verified,(err,result)=>{
         if (err){
             response.status(500).send("oops error in updating question!")}
              else {

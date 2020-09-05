@@ -14,7 +14,7 @@ let getAllQuestions = (callback) => {
 }
 
 let getIndividualQuestion = (id,callback)=>{
-    let query = `SELECT questions.topic, questions.question,answers.answer,questions.id,answers.id AS answersId FROM questions LEFT JOIN answers ON questions.id = answers.question_id WHERE questions.id = '${id}'`
+    let query = `SELECT questions.topic, questions.question,answers.answer,questions.id,answers.id AS answersId,answers.markdown,answers.verified FROM questions LEFT JOIN answers ON questions.id = answers.question_id WHERE questions.id = '${id}'`
     dbPoolInstance.query(query,(err,result)=>{
     callback(err,result)
 })
@@ -50,8 +50,8 @@ let getDeleteQuestion = (question_id,callback) => {
     })
 }
 
-let getAddNewQuestion = (userId,question,topic,callback) => {
-    let query = `INSERT INTO questions (user_id,topic,question) VALUES ('${userId}','${topic}','${question}')`;
+let getAddNewQuestion = (userId,question,topic,markdown,callback) => {
+    let query = `INSERT INTO questions (user_id,topic,question,markdown) VALUES ('${userId}','${topic}','${question}','${markdown}')`;
     dbPoolInstance.query(query,(err, result) => {
         callback(err,result)
     })

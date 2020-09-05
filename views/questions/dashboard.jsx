@@ -30,6 +30,8 @@ export default class Dashboard extends React.Component {
 
         console.log(data)
 
+
+
 const countObj = (arr) => {
     let count = {};
     for(let i=0;i<arr.length;i++){
@@ -48,6 +50,7 @@ let questionerLabel = Object.keys(questioner).join(',');
 let topicsData = Object.values(topics).join(',');
 let topicsLabel = Object.keys(topics).join(',');
 
+let date = new Date().toLocaleDateString();
 
 let questionsList = data.map(item=>{
     if(!item.answer){
@@ -63,6 +66,9 @@ let questionsList = data.map(item=>{
         </head>
         <body>
         <h1>Good Morning {this.props.user}, What's on your mind today?</h1>
+        <p>Today's date: {date} </p>
+        <p>The time now is : <p id="span"></p></p>
+
           <div style={{height:'200px',width:'400px'}}><canvas id="topicsChart"></canvas></div>
           <div style={{height:'200px',width:'400px'}}><canvas id="questionsChart"></canvas></div>
           <div style={{height:'200px',width:'400px'}}><canvas id="studentsChart"></canvas></div>

@@ -10,6 +10,7 @@ export default class Newanswer extends React.Component {
                 Question: <p>{data[0].question}</p>
                 Answer: <br /><textarea type="text" name="answer" form="answerform" style={{width:'400px',height:'200px',overflowWrap:'break-word'}}></textarea> <br/><br/>
                 Question ID:<p><input type="text" name="id" defaultValue={id} readOnly="readonly" /></p>
+                <input type="checkbox" id="markdown" name="markdown" value="true" /> Markdown required <br /> <br />
                     <input type="submit" value="Submit" />
                 </form>
                 </body>
