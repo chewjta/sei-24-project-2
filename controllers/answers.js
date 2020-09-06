@@ -24,14 +24,14 @@ let answerAdded = (request, response) => {
 
 let editAnswerForm = (request,response) => {
         let {id} = request.params;
-        let {logIn} = request.cookies;
+        let {logIn,type} = request.cookies;
         db.answers.getEditAnswerForm(id,(err,result)=>{
             if(err){
                 console.log(err)
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
                 if(logIn){
-                   response.render('answers/editanswer',result.rows[0])
+                   response.render('answers/editanswer',{type,data:result.rows[0]})
                } else {
                 response.redirect('/accounts/login')
                }

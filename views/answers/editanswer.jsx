@@ -2,8 +2,24 @@ var React = require("react");
 
 export default class Editanswer extends React.Component {
   render() {
-    let {id,answer,question,questionid} = this.props;
-    let unverify = null;
+    let {id,answer,question,questionid} = this.props.data;
+    let {type} = this.props;
+
+const verify = (test) => {
+    if(test == 'teacher'){
+        return <div>
+            Verified: <select name="verified" id="verify" form="editform">
+    <option value="true">Yes</option>
+    <option value="" selected>No</option>
+    </select>
+        </div>
+    } else {
+        return <div></div>
+    }
+}
+
+let verified = verify(type);
+
         return (
 <form method="POST" id="editform" action={`/answers/edit/${id}?_method=put`} >
     Question: {question} <br /> <br />
@@ -11,10 +27,7 @@ export default class Editanswer extends React.Component {
     Question ID: <input type="text" name="question_id" defaultValue={questionid} readonly="readonly" /> <br /> <br />
     Answer ID: <input type="text" name="answer_id" defaultValue={id} readonly="readonly" />
     <br /> <br />
-    Verified: <select name="verified" id="verify" form="editform">
-    <option value="true">Yes</option>
-    <option value="" selected>No</option>
-    </select>
+            {verified}
     <br /> <br />
     <input type="submit" value="Update" />
 </form>
