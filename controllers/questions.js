@@ -21,13 +21,14 @@ module.exports = (db) => {
 
     let individualQuestion = (request,response) => {
         let {id} = request.params;
+        let {userId} = request.cookies;
         db.questions.getIndividualQuestion(id,(err,result)=>{
             if(err){
                 console.log(err)
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
                 console.log(result.rows)
-                response.render('questions/onequestion',{data:result.rows})
+                response.render('questions/onequestion',{userId,data:result.rows})
             }
         })
     }
