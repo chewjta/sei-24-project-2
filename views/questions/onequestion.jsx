@@ -10,19 +10,33 @@ export default class Onequestion extends React.Component {
 
 const render = (obj) => {
     if(obj.questioner == userId){
-        return <div>
-            {obj.question}
-          <form method ="get" action= {`/questions/edit/${id}`}>
-          <input type="submit" value="edit"/>
+        return <div class="card text-center">
+  <h5 class="card-header">Question</h5>
+  <div class="card-body">
+    <h5 class="card-title">{obj.question}</h5>
+    <p class="card-text">Topic: {topic}</p>
+    <div class="row d-flex justify-content-center align-items-center" >
+    <form method ="get" action= {`/questions/edit/${id}`} style={{margin:'0 20px'}}>
+          <input type="submit" value="edit" className="btn btn-info" />
         </form>
         <form method ="get" action= {`/questions/delete/${id}`}>
-          <input type="submit" value="delete"/>
+          <input type="submit" value="delete" className="btn btn-danger"/>
         </form>
         </div>
+  </div>
+</div>
     } else {
-        return <div>{obj.question}</div>
+        return <div class="card text-center">
+  <h5 class="card-header">Question</h5>
+  <div class="card-body">
+    <h5 class="card-title">{obj.question}</h5>
+    <p class="card-text">Topic: {topic}</p>
+  </div>
+</div>
     }
 }
+
+
 
 question = render(question)
 
@@ -32,67 +46,133 @@ question = render(question)
                 if(item.markdown){
                 if(item.verified){
                 item.answer=marked(item.answer)
-            return <div>
-             <div style={{color:'green'}}dangerouslySetInnerHTML={{__html: item.answer}}></div>
-          <form method ="get" action= {`/answers/edit/${item.answersid}`}>
-          <input type="submit" value="edit"/>
-        </form>
-        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
-          <input type="submit" value="delete"/>
-        </form>
-         </div>
+            return <div class="card text-center">
+                  <div class="card-header">
+                    Answer
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div style={{color:'green'}}dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                    </blockquote>
+                    <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
+                          <input type="submit" value="edit" className="btn btn-info" />
+                        </form>
+                        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
+                          <input type="submit" value="delete" className="btn btn-danger"/>
+                        </form>
+                        </div>
+                  </div>
+                </div>
      } item.answer=marked(item.answer);
-     return <div>
-             <div dangerouslySetInnerHTML={{__html: item.answer}}></div>
-          <form method ="get" action= {`/answers/edit/${item.answersid}`}>
-          <input type="submit" value="edit"/>
-        </form>
-        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
-          <input type="submit" value="delete"/>
-        </form>
-         </div>
+     return <div class="card text-center">
+                  <div class="card-header">
+                    Answer
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                    </blockquote>
+                    <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
+                          <input type="submit" value="edit" className="btn btn-info" />
+                        </form>
+                        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
+                          <input type="submit" value="delete" className="btn btn-danger"/>
+                        </form>
+                        </div>
+                  </div>
+                </div>
      } else {
         if(item.verified){
-            return <div>
-                <p style={{color:'green'}}>{item.answer}</p>
-            <form method ="get" action= {`/answers/edit/${item.answersid}`}>
-          <input type="submit" value="edit"/>
-        </form>
-        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
-          <input type="submit" value="delete"/>
-        </form>
-        </div>
+            return <div class="card text-center">
+                  <div class="card-header">
+                    Answer
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div style={{color:'green'}}> {item.answer}</div>
+                    </blockquote>
+                    <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
+                          <input type="submit" value="edit" className="btn btn-info" />
+                        </form>
+                        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
+                          <input type="submit" value="delete" className="btn btn-danger"/>
+                        </form>
+                        </div>
+                  </div>
+                </div>
         }
-        return <div>
-                {item.answer}
-            <form method ="get" action= {`/answers/edit/${item.answersid}`}>
-          <input type="submit" value="edit"/>
-        </form>
-        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
-          <input type="submit" value="delete"/>
-        </form>
-        </div>
+        return <div class="card text-center">
+                  <div class="card-header">
+                    Answer
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div> {item.answer}></div>
+                    </blockquote>
+                    <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
+                          <input type="submit" value="edit" className="btn btn-info" />
+                        </form>
+                        <form method ="get" action= {`/answers/delete/${item.answersid}`}>
+                          <input type="submit" value="delete" className="btn btn-danger"/>
+                        </form>
+                        </div>
+                  </div>
+                </div>
      }
  } else {
     if(item.markdown){
                 if(item.verified){
                 item.answer=marked(item.answer)
-            return <div>
-             <div style={{color:'green'}}dangerouslySetInnerHTML={{__html: item.answer}}></div>
-         </div>
+            return <div class="card text-center">
+                  <div class="card-header">
+                    Answer
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div style={{color:'green'}} dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                    </blockquote>
+                  </div>
+                </div>
      } item.answer=marked(item.answer);
-     return <div>
-             <div dangerouslySetInnerHTML={{__html: item.answer}}></div>
-         </div>
+     return <div class="card text-center">
+                  <div class="card-header">
+                    Answer
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                    </blockquote>
+                  </div>
+                </div>
      } else {
         if(item.verified){
             return <div>
-                <p style={{color:'green'}}>{item.answer}</p>
+                <div class="card text-center">
+                  <div class="card-header">
+                    Answer
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div style={{color:'green'}}> {item.answer}</div>
+                    </blockquote>
+                  </div>
+                </div>
         </div>
         }
-        return <div>
-                {item.answer}
-        </div>
+        return <div class="card text-center">
+                  <div class="card-header">
+                    Answer
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <div> {item.answer}></div>
+                    </blockquote>
+                  </div>
+                </div>
      }
  }
 
@@ -108,26 +188,28 @@ question = render(question)
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous"></link>
         </head>
         <body>
-         <div>Question: {question}
-         </div><br />
-        <div>Topic: {topic}</div><br />
-         <div>
-             Answers:
-             <br />
-             <br />
-             <button id="revealans">Reveal</button>
-             <div id="answerslist" style={{display:'none',overflowWrap:'break-word',width:'300px'}}>{answersList}
-             </div>
-        </div><br />
+        {question}
+
+<div class="card text-center">
+  <div class="card-body">
+    <button id="revealans" class="btn btn-warning">Reveal Answer</button>
+             <div id="answerslist" style={{display:'none'}}>{answersList}
+        </div>
+  </div>
+</div>
+
+
+        <div class="card text-center">
+  <div class="card-body">
         <form method ="get" action= {`/answers/add/${id}`}>
-          <input type="submit" value="Add an answer"/>
+          <input type="submit" value="Add an answer" class="btn btn-primary"/>
         </form>
         <br />
-        <div>
             <form method ="get" action= {`/questions`}>
-          <input type="submit" value="Back to questions page"/>
+          <input type="submit" value="Back to questions page" class="btn btn-secondary"/>
         </form>
-        </div>
+          </div>
+            </div>
         <script src="/questionscript.js"></script>
         </body>
       </html>

@@ -12,6 +12,9 @@ function time() {
     m = '0'+m
   }
   var h = d.getHours();
+  if(h<10){
+    h = '0'+h
+  }
   span.innerText = h + ":" + m + ":" + s;
 }
 
