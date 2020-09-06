@@ -19,6 +19,8 @@ module.exports = (app, allModels) => {
 
  const answersControllerCallbacks = require('./controllers/answers')(allModels);
 
+  const studentsControllerCallbacks = require('./controllers/students')(allModels);
+
 
 app.get('/', accountsControllerCallbacks.home);
 app.get('/accounts/register',accountsControllerCallbacks.registerForm);
@@ -41,6 +43,11 @@ app.get('/answers/edit/:id',answersControllerCallbacks.editAnswerForm)
 app.put('/answers/edit/:id',answersControllerCallbacks.editAnswer)
 app.get('/answers/delete/:id',answersControllerCallbacks.deleteAnswerForm)
 app.delete('/answers/delete/:id',answersControllerCallbacks.deleteAnswer)
+
+
+
+app.get('/students/dashboard',studentsControllerCallbacks.studentDashboard)
+
 
 // app.post('/login',accountsControllerCallbacks.login);
   // app.get('/', pokemonControllerCallbacks.index);

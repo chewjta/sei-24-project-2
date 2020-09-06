@@ -67,6 +67,7 @@ let deleteQuestion = (request,response) => {
     let {question_id} = request.body;
     db.questions.getDeleteQuestion(question_id,(err,result)=>{
         if (err){
+            console.log(err)
             response.status(500).send("oops error in deleting question!")}
              else {
                 response.redirect(`/questions`)
@@ -91,6 +92,9 @@ let addNewQuestion = (request,response) => {
         }
     })
 }
+
+
+
 
     return{
         dashboard,

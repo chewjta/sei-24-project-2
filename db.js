@@ -74,6 +74,10 @@ const allQuestionsModelsFunction = require('./models/questions');
 
 const questionsModelsObject = allQuestionsModelsFunction( pool );
 
+const allStudentsModelsFunction = require('./models/students');
+
+const studentsModelsObject = allStudentsModelsFunction( pool );
+
 
 /*
  * ===================================================
@@ -104,5 +108,6 @@ module.exports = {
   // users: userModelsObject,
   accounts: accountsModelsObject,
   questions: questionsModelsObject,
-  answers: answersModelsObject
+  answers: answersModelsObject,
+  students: studentsModelsObject
 };

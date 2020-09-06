@@ -44,7 +44,7 @@ let getDeleteQuestionForm = (id,callback) => {
 }
 
 let getDeleteQuestion = (question_id,callback) => {
-    let query = `DELETE FROM questions WHERE id='${question_id}'`
+    let query = `DELETE FROM questions WHERE id='${question_id}'; DELETE FROM answers WHERE question_id='${question_id}'`
     dbPoolInstance.query(query,(err, result) => {
         callback(err,result)
     })
@@ -56,6 +56,15 @@ let getAddNewQuestion = (userId,question,topic,markdown,callback) => {
         callback(err,result)
     })
 }
+
+
+let getStudentDashboard = (callback) => {
+        let query=`SELECT questions.id,questions.topic,questions.question,accounts.username,accounts.id AS accountid FROM questions LEFT JOIN accounts ON questions.user_id = accounts.id`;
+        dbPoolInstance.query(query,(err, result) => {
+        callback(err,result)
+    })
+}
+
 
 
     return {
