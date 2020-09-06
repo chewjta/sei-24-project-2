@@ -8,6 +8,7 @@ export default class Dashboard extends React.Component {
     let topics=[];
     let idenCheck = [];
     let idenCheck2 = [];
+    let idenCheck3 = [];
     let questionLength = [];
 data.forEach(item=>{
     questionLength.push(item.questionid)
@@ -20,6 +21,24 @@ data.forEach(item=>{
         if(!idenCheck2.includes(item.questionid)){
         topics.push(item.topic)
     }
+    }
+})
+
+let questionList = data.map(item=>{
+    if(!idenCheck3.includes(item.questionid)){
+         idenCheck3.push(item.questionid)
+    if(item.questioner == userId){
+        return(<li>Q: {item.question}</li>)
+    }
+}
+})
+
+let answerList = data.map(item=>{
+    if(item.answerer == userId){
+        return(<li>
+            <p>Q: {item.question}</p>
+            <p>A: {item.answer}</p>
+        </li>)
     }
 })
 
@@ -52,6 +71,15 @@ let date = new Date().toLocaleDateString();
 
           <div style={{height:'200px',width:'400px'}}><canvas id="topicsChart"></canvas></div>
           <div style={{height:'200px',width:'400px'}}><canvas id="answersChart"></canvas></div>
+        <ul>
+            My Questions:
+            {questionList}
+        </ul>
+
+        <ul>
+            My Responses:
+            {answerList}
+        </ul>
 
           <form id='allquestions' method='GET' action='/questions'>
             <input type='submit' value='View All Questions'/>

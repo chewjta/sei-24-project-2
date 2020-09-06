@@ -4,7 +4,11 @@ module.exports = (db) => {
         let user = request.cookies.username;
         db.questions.getDashboard(user,(err,result)=>{
             console.log(result)
+            if(request.cookies.type == 'teacher' && request.cookies.logIn){
             response.render('questions/dashboard',{user,data:result.rows})
+        } else if (request.cookies.type == 'student' && request.cookies.logIn){
+            response.redirect('/students/dashboard')
+        }
         })
     }
 

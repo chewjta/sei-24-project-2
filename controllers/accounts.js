@@ -35,8 +35,10 @@ let login = (request,response) => {
         response.cookie('logIn', 'true');
         if(result.type == 'teacher'){
         response.redirect('/dashboard')
-    }
+    } else if (result.type == 'student'){
+        response.redirect('/students/dashboard')
       }
+    }
     })
 }
 

@@ -8,6 +8,7 @@ export default class Dashboard extends React.Component {
     let topics=[];
     let idenCheck = [];
     let idenCheck2 = [];
+    let idenCheck3= [];
     let {data} = this.props;
         data.forEach(item=>{
             console.log(item)
@@ -59,6 +60,14 @@ let questionsList = data.map(item=>{
 }
 })
 
+let verifyList = data.map(item=>{
+    if(!idenCheck3.includes(item.questionid)){
+        idenCheck3.push(item.questionid)
+    if(item.answer && !item.verified){
+        return (<li>{item.question}</li>)
+    }
+}
+})
 
     return (
       <html>
@@ -74,9 +83,15 @@ let questionsList = data.map(item=>{
           <div style={{height:'200px',width:'400px'}}><canvas id="questionsChart"></canvas></div>
           <div style={{height:'200px',width:'400px'}}><canvas id="studentsChart"></canvas></div>
           <ol>
-          <h3>Questions of the Day</h3>
+          <h3>Unanswered questions of the Day</h3>
           {questionsList}
           </ol>
+
+          <ol>
+          <h3>Unverified questions of the Day</h3>
+          {verifyList}
+          </ol>
+
           <form id='allquestions' method='GET' action='/questions'>
             <input type='submit' value='View All Questions'/>
           </form>
