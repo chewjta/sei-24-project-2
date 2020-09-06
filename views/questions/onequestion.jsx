@@ -9,6 +9,34 @@ export default class Onequestion extends React.Component {
        let id = data[0].id;
 
 const render = (obj) => {
+    if(obj.markdown){
+        obj.question = marked(obj.question);
+         if(obj.questioner == userId){
+        return <div class="card text-center">
+  <h5 class="card-header">Question</h5>
+  <div class="card-body">
+    <div dangerouslySetInnerHTML={{__html: obj.question}}></div>
+    <p class="card-text">Topic: {topic}</p>
+    <div class="row d-flex justify-content-center align-items-center" >
+    <form method ="get" action= {`/questions/edit/${id}`} style={{margin:'0 20px'}}>
+          <input type="submit" value="edit" className="btn btn-info" />
+        </form>
+        <form method ="get" action= {`/questions/delete/${id}`}>
+          <input type="submit" value="delete" className="btn btn-danger"/>
+        </form>
+        </div>
+  </div>
+</div>
+    } else {
+        return <div class="card text-center">
+  <h5 class="card-header">Question</h5>
+  <div class="card-body">
+    <div dangerouslySetInnerHTML={{__html: obj.question}}></div>
+    <p class="card-text">Topic: {topic}</p>
+  </div>
+</div>
+    }
+    } else {
     if(obj.questioner == userId){
         return <div class="card text-center">
   <h5 class="card-header">Question</h5>
@@ -34,6 +62,7 @@ const render = (obj) => {
   </div>
 </div>
     }
+}
 }
 
 

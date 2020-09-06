@@ -10,7 +10,7 @@ let getAnswerForm = (id,callback) => {
 }
 
 let getAnswerAdded = (id,username,answer,userId,markdown,callback) => {
-let query = `INSERT INTO answers (question_id,user_id,answer,markdown) VALUES ('${id}','${userId}','${answer} ----- ${username}','${markdown}')`
+let query = `INSERT INTO answers (question_id,user_id,answer,markdown) VALUES ('${id}','${userId}','${answer}','${markdown}')`
 dbPoolInstance.query(query,(err,result)=>{
         callback(err,result)
     })
