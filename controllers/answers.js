@@ -3,8 +3,13 @@ module.exports = (db) => {
 
 let answerForm = (request,response) => {
     let {id} = request.params;
+    let {logIn} = request.cookies;
     db.answers.getAnswerForm(id,(err,result)=>{
+        if(logIn){
             response.render('answers/new',{id,data:result.rows})
+        } else {
+            response.redirect('/accounts/login')
+        }
         })
 }
 
@@ -19,12 +24,18 @@ let answerAdded = (request, response) => {
 
 let editAnswerForm = (request,response) => {
         let {id} = request.params;
+        let {logIn} = request.cookies;
         db.answers.getEditAnswerForm(id,(err,result)=>{
             if(err){
                 console.log(err)
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
-                response.render('answers/editanswer',result.rows[0])
+                if(logIn){
+                   response.render('answers/editanswer',result.rows[0])
+               } else {
+                response.redirect('/accounts/login')
+               }
+
             }
         })
     }
@@ -43,11 +54,17 @@ let editAnswer = (request,response) => {
 
 let deleteAnswerForm = (request,response) => {
         let {id} = request.params;
+        let {logIn} = request.cookies;
         db.answers.getDeleteAnswerForm(id,(err,result)=>{
             if(err){
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
-                response.render('answers/deleteanswer',result.rows[0])
+                if(logIn){
+                    response.render('answers/deleteanswer',result.rows[0])
+                } else {
+                    response.redirect('/accounts/login')
+                }
+
             }
         })
     }

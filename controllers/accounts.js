@@ -46,7 +46,8 @@ let login = (request,response) => {
 let logout = (request,response) =>{
     response.clearCookie('username');
     response.clearCookie('type');
-    response.cookie('logIn','false');
+    response.clearCookie('logIn');
+    response.clearCookie('userId');
     response.redirect('/')
   }
 

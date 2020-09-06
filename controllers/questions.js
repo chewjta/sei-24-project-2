@@ -8,39 +8,56 @@ module.exports = (db) => {
             response.render('questions/dashboard',{user,data:result.rows})
         } else if (request.cookies.type == 'student' && request.cookies.logIn){
             response.redirect('/students/dashboard')
+        } else {
+            response.redirect('/accounts/login')
         }
         })
     }
 
 
     let allQuestions = (request,response) => {
+        let {logIn} = request.cookies;
         db.questions.getAllQuestions((err,result)=>{
-            response.render('questions/allquestions',{data:result.rows})
+            if(logIn){
+                response.render('questions/allquestions',{data:result.rows})
+            } else{
+                response.redirect('/accounts/login')
+            }
+
         })
     }
 
     let individualQuestion = (request,response) => {
         let {id} = request.params;
-        let {userId} = request.cookies;
+        let {userId,logIn} = request.cookies;
         db.questions.getIndividualQuestion(id,(err,result)=>{
             if(err){
                 console.log(err)
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
-                console.log(result.rows)
-                response.render('questions/onequestion',{userId,data:result.rows})
+                if(logIn){
+                    response.render('questions/onequestion',{userId,data:result.rows})
+                } else {
+                    response.redirect('/accounts/login')
+                }
             }
         })
     }
 
     let editQuestionForm = (request,response) => {
         let {id} = request.params;
+        let {logIn} = request.cookies;
         console.log(request.params)
         db.questions.getEditQuestionForm(id,(err,result)=>{
             if(err){
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
-                response.render('questions/editquestion',result.rows[0])
+                if(logIn){
+                    response.render('questions/editquestion',result.rows[0])
+                } else {
+                    response.redirect('/accounts/login')
+                }
+
             }
         })
     }
@@ -59,11 +76,17 @@ let editQuestion = (request,response) => {
 
 let deleteQuestionForm = (request,response) => {
         let {id} = request.params;
+        let {logIn} = request.cookies;
         db.questions.getDeleteQuestionForm(id,(err,result)=>{
             if(err){
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
-                response.render('questions/deletequestion',result.rows[0])
+                if(logIn){
+                    response.render('questions/deletequestion',result.rows[0])
+                } else {
+                    response.redirect('/accounts/login')
+                }
+
             }
         })
     }
@@ -81,7 +104,12 @@ let deleteQuestion = (request,response) => {
 }
 
 let newQuestionForm = (request,response) => {
-    response.render('questions/new')
+    let {logIn} = request.cookies;
+    if(logIn){
+    response.render('questions/new')}
+    else {
+        response.redirect('/accounts/login')
+    }
 }
 
 let addNewQuestion = (request,response) => {
