@@ -26,20 +26,25 @@ let login = (request,response) => {
     let {username,password} = request.body;
     password = sha256(password);
     db.accounts.getLogin(username,password,(err,result)=>{
-        if(err){console.log(err) response.status(400).send("Something went wrong")}else {
-      if (result === "no such user!" || result === "wrong password"){
-        response.status(404).send(result)
-      } else{
-        response.cookie('username',result.username);
-        response.cookie('userId',result.id)
-        response.cookie('type',result.type);
-        response.cookie('logIn', 'true');
-        if(result.type == 'teacher'){
-        response.redirect('/dashboard')
-    } else if (result.type == 'student'){
-        response.redirect('/students/dashboard')
-      }
-    }
+        if(err){
+            console.log(err)
+            response.send(err)
+        }else {
+          if (result === "no such user!" || result === "wrong password"){
+            response.status(404).send(result)
+          } else{
+            response.cookie('username',result.username);
+            response.cookie('userId',result.id)
+            response.cookie('type',result.type);
+            response.cookie('logIn', 'true');
+            if(result.type == 'teacher'){
+                response.redirect('/dashboard')
+            } else if (result.type == 'student'){
+                response.redirect('/students/dashboard')
+            } else {
+                response.redirect('/accounts/login')
+            }
+        }
 }
     })
 }
