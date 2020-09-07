@@ -1,4 +1,5 @@
 var React = require("react");
+var marked = require('marked');
 
 export default class Dashboard extends React.Component {
   render() {
@@ -56,7 +57,12 @@ let date = new Date().toLocaleDateString();
 
 let questionsList = data.map(item=>{
     if(!item.answer){
-    return  (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
+    if(item.markdown){
+            item.question=marked(item.question);
+            return (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a></li>)
+        } else {
+        return (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
+    }
 }
 })
 
@@ -64,8 +70,13 @@ let verifyList = data.map(item=>{
     if(!idenCheck3.includes(item.questionid)){
         idenCheck3.push(item.questionid)
     if(item.answer && !item.verified){
+        if(item.markdown){
+            item.question=marked(item.question);
+            return (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a></li>)
+        } else {
         return (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
     }
+}
 }
 })
 
@@ -120,7 +131,7 @@ const quotesArr = [
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
         </head>
         <body>
-        <h2 className="text-center font-weight-lighter">Good Morning {this.props.user}, What's on your mind today?</h2>
+        <h2 className="text-center font-weight-lighter">Good Morning <span class="text-capitalize">{this.props.user}</span>, What's on your mind today?</h2>
         <h4 className="text-center font-weight-light">{date} &nbsp; &nbsp;<p id="span" className="text-center font-weight-light" style={{display:'inline-block'}}></p></h4>
         <div className="d-flex justify-content-center">
         <div class="card text-black bg-light mb-3" style={{marginRight:'10px'}}>
@@ -143,7 +154,7 @@ const quotesArr = [
         </div>
         </div>
 
-        <div className='d-flex justify-content-around'>
+        <div className='d-flex justify-content-center'>
             <div class="card text-center">
               <div class="card-header">
                 Featured Questions of the Day
@@ -159,7 +170,7 @@ const quotesArr = [
               </div>
             </div>
 
-                <div class="card" style={{height:'200px'}}>
+                <div class="card" style={{height:'200px',marginLeft:'10px'}}>
                   <div class="card-header">
                     Quote of the Day
                   </div>
