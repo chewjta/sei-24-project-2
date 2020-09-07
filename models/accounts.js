@@ -12,8 +12,9 @@ let getRegister = (username,password,type,callback) => {
     dbPoolInstance.query(query, (err,res)=>{
       if(err){
         console.log("err in getLogin models", err.message)
+        callback(err, null)
       } else {
-        callback(err,res)
+        callback(null,res)
       }
     })
 }
