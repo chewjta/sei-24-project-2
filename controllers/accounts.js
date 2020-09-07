@@ -26,6 +26,7 @@ let login = (request,response) => {
     let {username,password} = request.body;
     password = sha256(password);
     db.accounts.getLogin(username,password,(err,result)=>{
+        if(err){console.log(err)}else {
       if (result === "no such user!" || result === "wrong password"){
         response.status(404).send(result)
       } else{
@@ -39,6 +40,7 @@ let login = (request,response) => {
         response.redirect('/students/dashboard')
       }
     }
+}
     })
 }
 
