@@ -147,7 +147,7 @@ const quotesArr = [
         <h4 className="text-center font-weight-light">{date} &nbsp; &nbsp;<p id="span" className="text-center font-weight-light" style={{display:'inline-block'}}></p></h4>
         <div className="d-flex justify-content-center">
         <div class="card text-black bg-light mb-3" style={{marginRight:'10px'}}>
-  <div class="card-header">Topics to Focus</div>
+  <div class="card-header">Topics With Queries</div>
   <div class="card-body">
         <div style={{height:'200px',width:'400px'}}><canvas id="topicsChart"></canvas></div>
         </div>
@@ -159,7 +159,7 @@ const quotesArr = [
         </div>
         </div>
         <div class="card text-black bg-light mb-3">
-  <div class="card-header">Student to Focus</div>
+  <div class="card-header">Most Inquisitive Student</div>
   <div class="card-body">
         <div style={{height:'200px',width:'400px'}}><canvas id="studentsChart"></canvas></div>
         </div>
