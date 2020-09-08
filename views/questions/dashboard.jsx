@@ -57,9 +57,15 @@ let questionsList = data.map(item=>{
     if(!item.answer){
     if(item.markdown){
             item.question=marked(item.question);
-            return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a></li>)
+            return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a>
+                <footer class="blockquote-footer font-weight-strong">Topic: {item.topic}</footer>
+        <footer class="blockquote-footer font-weight-light">Popularity: {item.vote}</footer>
+                </li>)
         } else {
-        return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
+        return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}>{item.question}</a>
+            <footer class="blockquote-footer font-weight-strong">Topic: {item.topic}</footer>
+        <footer class="blockquote-footer font-weight-light">Popularity: {item.vote}</footer>
+            </li>)
     }
 }
 })
@@ -70,9 +76,15 @@ let verifyList = data.map(item=>{
     if(item.answer && !item.verified){
         if(item.markdown){
             item.question=marked(item.question);
-            return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a></li>)
+            return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a>
+                <footer class="blockquote-footer font-weight-strong">Topic: {item.topic}</footer>
+        <footer class="blockquote-footer font-weight-light">Popularity: {item.vote}</footer>
+                </li>)
         } else {
-        return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
+        return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}>{item.question}</a>
+            <footer class="blockquote-footer font-weight-strong">Topic: {item.topic}</footer>
+        <footer class="blockquote-footer font-weight-light">Popularity: {item.vote}</footer>
+            </li>)
     }
 }
 }

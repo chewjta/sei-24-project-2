@@ -1,7 +1,8 @@
 var React = require("react");
-
+var axios = require('axios');
 export default class Dashboard extends React.Component {
   render() {
+
 
     let myAnswer = 0;
     let {data,userId,username} = this.props;
@@ -24,11 +25,15 @@ data.forEach(item=>{
     }
 })
 
+
 let questionList = data.map(item=>{
     if(!idenCheck3.includes(item.questionid)){
          idenCheck3.push(item.questionid)
     if(item.questioner == userId){
-        return(<li className="list-group-item font-weight-lighter" style={{marginLeft:'70px'}}><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
+        return(<blockquote class="blockquote mb-0 list-group-item"><a href={`/questions/${item.questionid}`}>{item.question}</a>
+            <footer class="blockquote-footer font-weight-strong">Topic: {item.topic}</footer>
+        <footer class="blockquote-footer font-weight-light">Popularity: {item.vote}</footer>
+            </blockquote>)
     }
 }
 })
@@ -38,8 +43,10 @@ let questionList = data.map(item=>{
 let answerList = data.map(item=>{
     if(item.answerer == userId){
         return(<blockquote class="blockquote mb-0 list-group-item">
-                      <p>{item.question}</p>
-                      <footer class="blockquote-footer">{item.answer}</footer>
+                      <p>Q: <a href={`/questions/${item.questionid}`}>{item.question}</a></p>
+                      <footer class="blockquote-footer font-weight-strong">Topic: {item.topic}</footer>
+                      <p>A: <a href={`/answers/edit/${item.answerid}`}>{item.answer}</a></p>
+                      <footer class="blockquote-footer font-weight-strong">Popularity: {item.answervote}</footer>
                     </blockquote>)
     }
 })
@@ -125,20 +132,21 @@ const quotesArr = [{
         <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous"></link>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
         </head>
         <body>
-        <h2 className="text-center font-weight-lighter">Good Morning <span class="text-capitalize">{username}</span>, What's on your mind today?</h2>
+        <h2 className="text-center font-weight-lighter">Hello <span class="text-capitalize">{username}</span>, What's on your mind today?</h2>
         <h4 className="text-center font-weight-light">{date} &nbsp; &nbsp;<p id="span" className="text-center font-weight-light" style={{display:'inline-block'}}></p></h4>
 
         <div className="d-flex justify-content-center">
         <div class="card text-black bg-light mb-3" style={{marginRight:'10px'}}>
-  <div class="card-header">Topics to Focus</div>
+  <div class="card-header">My most queried topics</div>
   <div class="card-body">
         <div style={{height:'200px',width:'400px'}}><canvas id="topicsChart"></canvas></div>
         </div>
         </div>
         <div class="card text-black bg-light mb-3" style={{marginRight:'10px'}}>
-  <div class="card-header">Unanswered Questions</div>
+  <div class="card-header">My contributions</div>
   <div class="card-body">
         <div style={{height:'200px',width:'400px'}}><canvas id="answersChart"></canvas></div>
         </div>
@@ -147,14 +155,14 @@ const quotesArr = [{
 
 
 
-            <div class="card text-center" style={{margin:'10px auto', width:'900px'}}>
+            <div class="card" style={{margin:'10px auto', width:'900px'}}>
               <div class="card-header">
-                My questions
+            My questions
               </div>
               <div class="card-body">
-                <div class="card-text" style={{marginRight:'70px'}}><p class="card-text"></p>{questionList}</div>
+                <div class="card-text"><p class="card-text"></p>{questionList}</div>
 
-                <form id='allquestions' method='GET' action='/questions' style={{marginTop:'20px'}}>
+                <form id='allquestions' method='GET' action='/questions' style={{margin:'20px 350px'}}>
                         <input type='submit' value='View All Questions' class="btn btn-primary"/>
                       </form>
               </div>

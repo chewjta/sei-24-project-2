@@ -1,13 +1,13 @@
 module.exports = (dbPoolInstance) => {
 let getDashboard = (user,callback) => {
-    let query = `SELECT questions.user_id AS questioner, answers.user_id AS answerer,questions.topic, questions.question,answers.answer,accounts.username,questions.id AS questionid,answers.verified FROM answers RIGHT JOIN questions ON answers.question_id = questions.id LEFT JOIN accounts ON questions.user_id = accounts.id ORDER BY questions.id DESC`
+    let query = `SELECT questions.user_id AS questioner, answers.user_id AS answerer,questions.topic, questions.question,answers.answer,accounts.username,questions.id AS questionid,answers.verified,questions.vote FROM answers RIGHT JOIN questions ON answers.question_id = questions.id LEFT JOIN accounts ON questions.user_id = accounts.id ORDER BY questions.vote DESC NULLS LAST`
     dbPoolInstance.query(query,(err,result)=>{
         callback(err,result)
     })
 }
 
 let getAllQuestions = (callback) => {
-    let query=`SELECT questions.id, answers.answer, questions.question,questions.vote FROM questions LEFT JOIN answers ON questions.id = answers.question_id`
+    let query=`SELECT questions.id, answers.answer, questions.question,questions.vote,questions.topic FROM questions LEFT JOIN answers ON questions.id = answers.question_id ORDER BY questions.vote DESC NULLS LAST`
     dbPoolInstance.query(query,(err,result)=>{
         callback(err,result)
     })
@@ -53,14 +53,6 @@ let getDeleteQuestion = (question_id,callback) => {
 let getAddNewQuestion = (userId,question,topic,markdown,callback) => {
     let query = `INSERT INTO questions (user_id,topic,question,markdown) VALUES ('${userId}','${topic}','${question}','${markdown}')`;
     dbPoolInstance.query(query,(err, result) => {
-        callback(err,result)
-    })
-}
-
-
-let getStudentDashboard = (callback) => {
-        let query=`SELECT questions.id,questions.topic,questions.question,accounts.username,accounts.id AS accountid FROM questions LEFT JOIN accounts ON questions.user_id = accounts.id`;
-        dbPoolInstance.query(query,(err, result) => {
         callback(err,result)
     })
 }

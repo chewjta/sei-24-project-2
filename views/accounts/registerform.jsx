@@ -16,7 +16,7 @@ export default class Registerform extends React.Component {
                             Password: <input type="password" name="password" /> <br /> <br />
                             <select name="type" >
                                       <option value="student">Student</option>
-                                      <option value="teacher" disabled>Teacher</option>
+                                      <option value="teacher" >Teacher</option>
                                     </select></div>
                                     <br />
                             <input type="submit" value="Register" class="btn btn-success"/>

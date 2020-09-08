@@ -21,12 +21,14 @@ export default class Allquestions extends React.Component {
 
     let answeredList = answered.map(item=>{
         return <li className="list-group-item font-weight-stronger"><a href={`/questions/${item.id}`}>{item.question}</a>
-        <footer class="blockquote-footer">Popularity: {item.vote}</footer></li>
+        <footer class="blockquote-footer font-weight-strong">Topic: {item.topic}</footer>
+        <footer class="blockquote-footer font-weight-light">Popularity: {item.vote}</footer></li>
     })
 
     let unansweredList = unanswered.map(item=>{
         return <li className="list-group-item font-weight-stronger"><a href={`/questions/${item.id}`}>{item.question}</a>
-        <footer class="blockquote-footer">Popularity: {item.vote}</footer>
+        <footer class="blockquote-footer font-weight-strong">Topic: {item.topic}</footer>
+        <footer class="blockquote-footer font-weight-light">Popularity: {item.vote}</footer>
         </li>
     })
 
