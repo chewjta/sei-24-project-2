@@ -45,7 +45,8 @@ app.put('/answers/edit/:id',answersControllerCallbacks.editAnswer)
 app.get('/answers/delete/:id',answersControllerCallbacks.deleteAnswerForm)
 app.delete('/answers/delete/:id',answersControllerCallbacks.deleteAnswer)
 
-
+app.get('/questions/vote/:id',questionsControllerCallbacks.voteQuestionForm)
+app.put('/questions/vote/:id',questionsControllerCallbacks.voteQuestion)
 app.get('/answers/vote/:id',answersControllerCallbacks.voteAnswerForm)
 app.put('/answers/vote/:id',answersControllerCallbacks.voteAnswer)
 app.get('/students/dashboard',studentsControllerCallbacks.studentDashboard)

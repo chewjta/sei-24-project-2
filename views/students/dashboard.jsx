@@ -160,7 +160,7 @@ const quotesArr = [{
               </div>
             </div>
 
-                <div class="card" style={{height:'400px',width:'900px', margin:'10px auto'}}>
+                <div class="card" style={{width:'900px', margin:'10px auto'}}>
                   <div class="card-header">
                     My responses
                   </div>

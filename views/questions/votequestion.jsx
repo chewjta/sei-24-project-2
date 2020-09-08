@@ -1,8 +1,8 @@
 var React = require("react");
 
-export default class Voteanswer extends React.Component {
+export default class Votequestion extends React.Component {
   render() {
-    let {id,answer,question,questionid} = this.props.data;
+    let {id,question,topic} = this.props.data;
 
         return (
         <html>
@@ -12,12 +12,12 @@ export default class Voteanswer extends React.Component {
         <body>
         <div className="container">
             <div className="card-body">
-        <form method="POST" id="voteform" action={`/answers/vote/${id}?_method=put`}>
+        <form method="POST" id="voteform" action={`/questions/vote/${id}?_method=put`}>
     <span style={{fontSize:'32px'}}>Question: {question}</span> <br /> <br />
-    <span style={{fontSize:'32px'}}>Answer: {answer}</span> <br /> <br />
-    Question ID: <input type="text" name="question_id" class="form-control"defaultValue={questionid} readonly="readonly" /> <br /> <br />
-    Answer ID: <input type="text" name="id" defaultValue={id} class="form-control" readonly="readonly" />
-    Like this answer: <select name="vote" id="vote" form="voteform"  class="form-control">
+    <span style={{fontSize:'32px'}}>Topic: {topic}</span> <br /> <br />
+    Question ID: <input type="text" name="question_id" class="form-control"defaultValue={id} readonly="readonly" /> <br /> <br />
+
+    Like this question: <select name="vote" id="vote" form="voteform"  class="form-control">
                 <option value="" selected disabled>Choose here</option>
                 <option value={1}>Yes</option>
                 <option value={-1}>No</option>

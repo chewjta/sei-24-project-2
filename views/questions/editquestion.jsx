@@ -13,8 +13,8 @@ export default class Editquestion extends React.Component {
         <div className="container">
             <div className="card-body">
                 <form method="POST" action={`/questions/edit/${id}?_method=put`} >
-                    Edited Question:  <input type="text" name="question" defaultValue={question} class="form-control"/> <br /> <br />
-                    Edited Topic: <input type="text" name="topic" defaultValue={topic} class="form-control"/> <br /> <br />
+                    Edited Question:  <input type="text" name="question" defaultValue={question} class="form-control" required /> <br /> <br />
+                    Edited Topic: <input type="text" name="topic" defaultValue={topic} class="form-control" required/> <br /> <br />
                     Question_ID: <input type="text" name="question_id" defaultValue={id} readonly="readonly" class="form-control"/> <br /> <br />
 
                     <input type="submit" value="Update" class="btn btn-primary" style={{marginLeft:'470px'}}/>

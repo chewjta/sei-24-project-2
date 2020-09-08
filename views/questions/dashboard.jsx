@@ -1,6 +1,6 @@
 var React = require("react");
 var marked = require('marked');
-
+var axios = require('axios');
 export default class Dashboard extends React.Component {
   render() {
     let answered = 0;
@@ -12,7 +12,6 @@ export default class Dashboard extends React.Component {
     let idenCheck3= [];
     let {data} = this.props;
         data.forEach(item=>{
-            console.log(item)
             if(!item.answer){
                 unanswered+=1;
             } else if(item.answer){
@@ -31,7 +30,6 @@ export default class Dashboard extends React.Component {
 
         })
 
-        console.log(data)
 
 
 
@@ -79,6 +77,8 @@ let verifyList = data.map(item=>{
 }
 }
 })
+
+
 
 
 const quotesArr = [
@@ -180,10 +180,12 @@ const quotesArr = [
                       <footer class="blockquote-footer">{quotesArr[Math.floor((Math.random()*10))].author}</footer>
                     </blockquote>
 
-                  </div>
                   <form method ="post" action= "/logout" class="text-center" >
                       <input type="submit" value="Logout" class="btn btn-danger"/>
                     </form>
+
+                  </div>
+
                 </div>
 
 

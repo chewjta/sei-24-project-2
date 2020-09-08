@@ -11,8 +11,8 @@ export default class Newquestion extends React.Component {
                 <div className="container">
                 <div className="card-body">
                 <form method="post" action="/questions/add" id="questionform">
-                Question: <br /><textarea type="text" name="question" form="questionform" class="form-control" rows='6'></textarea> <br/><br/>
-                Topic:<p><input type="text" name="topic" class="form-control" /></p>
+                Question: <br /><textarea type="text" name="question" form="questionform" class="form-control" rows='6' required></textarea> <br/><br/>
+                Topic:<p><input type="text" name="topic" class="form-control" required/></p>
                 <input type="checkbox" id="markdown" name="markdown" value="true" /> Markdown required <br /> <br />
                     <input type="submit" value="Submit" style={{marginLeft:'470px'}} class="btn btn-primary"/>
                 </form>

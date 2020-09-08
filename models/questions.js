@@ -7,14 +7,14 @@ let getDashboard = (user,callback) => {
 }
 
 let getAllQuestions = (callback) => {
-    let query=`SELECT questions.id, answers.answer, questions.question FROM questions LEFT JOIN answers ON questions.id = answers.question_id`
+    let query=`SELECT questions.id, answers.answer, questions.question,questions.vote FROM questions LEFT JOIN answers ON questions.id = answers.question_id`
     dbPoolInstance.query(query,(err,result)=>{
         callback(err,result)
     })
 }
 
 let getIndividualQuestion = (id,callback)=>{
-    let query = `SELECT questions.topic, questions.question,answers.answer,questions.id,answers.id AS answersId,answers.markdown,answers.verified,answers.user_id AS answerer,questions.user_id AS questioner,answers.vote FROM questions LEFT JOIN answers ON questions.id = answers.question_id WHERE questions.id = '${id}'`
+    let query = `SELECT questions.topic, questions.question,answers.answer,questions.id,answers.id AS answersId,answers.markdown,answers.verified,answers.user_id AS answerer,questions.user_id AS questioner,answers.vote, questions.vote AS questionvote FROM questions LEFT JOIN answers ON questions.id = answers.question_id WHERE questions.id = '${id}' ORDER BY answers.vote DESC NULLS LAST`
     dbPoolInstance.query(query,(err,result)=>{
     callback(err,result)
 })
@@ -67,6 +67,23 @@ let getStudentDashboard = (callback) => {
 
 
 
+let getVoteQuestionForm = (id,callback) => {
+    let query = `SELECT questions.topic,questions.id, questions.question FROM questions WHERE questions.id = '${id}'`
+    dbPoolInstance.query(query,(err, result) => {
+        callback(err,result)
+    })
+}
+
+
+let getVoteQuestion = (question_id,vote,callback) => {
+    let query = `UPDATE questions SET vote = COALESCE(vote,0) + ${vote} WHERE id ='${question_id}'`
+    dbPoolInstance.query(query,(err, result) => {
+        callback(err,result)
+    })
+}
+
+
+
     return {
         getDashboard,
         getAllQuestions,
@@ -75,6 +92,8 @@ let getStudentDashboard = (callback) => {
         getEditQuestion,
         getDeleteQuestionForm,
         getDeleteQuestion,
-        getAddNewQuestion
+        getAddNewQuestion,
+        getVoteQuestionForm,
+        getVoteQuestion
     }
 }

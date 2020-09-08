@@ -3,7 +3,6 @@ module.exports = (db) => {
     let dashboard = (request,response) => {
         let user = request.cookies.username;
         db.questions.getDashboard(user,(err,result)=>{
-            console.log(result)
             if(request.cookies.type == 'teacher' && request.cookies.logIn){
             response.render('questions/dashboard',{user,data:result.rows})
         } else if (request.cookies.type == 'student' && request.cookies.logIn){
@@ -32,11 +31,9 @@ module.exports = (db) => {
         let {userId,logIn,type} = request.cookies;
         db.questions.getIndividualQuestion(id,(err,result)=>{
             if(err){
-                console.log(err)
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
                 if(logIn){
-                    console.log(type)
                     response.render('questions/onequestion',{userId,type,data:result.rows})
                 } else {
                     response.redirect('/accounts/login')
@@ -48,7 +45,6 @@ module.exports = (db) => {
     let editQuestionForm = (request,response) => {
         let {id} = request.params;
         let {logIn} = request.cookies;
-        console.log(request.params)
         db.questions.getEditQuestionForm(id,(err,result)=>{
             if(err){
                 response.status(500).send("Oops we did not find the question you were looking for")
@@ -119,13 +115,43 @@ let addNewQuestion = (request,response) => {
     question = question.replace(/[\"\'\`]/g, "");
     db.questions.getAddNewQuestion(userId,question,topic,markdown,(err,result)=>{
         if(err){
-            console.log(err)
             response.status(500).send("error in creating question!")
         } else {
             response.redirect(`/questions`)
         }
     })
 }
+
+
+let voteQuestionForm = (request,response) => {
+    let {id} = request.params;
+    let {logIn} = request.cookies;
+    db.questions.getVoteQuestionForm(id,(err,result)=>{
+     if(err){
+         response.status(500).send("Oops we did not find the question you were looking for")
+            } else {
+                if(logIn){
+                   response.render('questions/votequestion',{data:result.rows[0]})
+               } else {
+                response.redirect('/accounts/login')
+               }
+
+            }
+        })
+
+}
+
+let voteQuestion = (request,response) => {
+    let {vote,question_id} = request.body;
+    db.questions.getVoteQuestion(question_id,vote,(err,result)=>{
+         if (err){
+            response.status(500).send("oops error in deleting answer!")}
+             else {
+                response.redirect(`/questions/${question_id}`)
+            }
+    })
+}
+
 
 
 
@@ -139,6 +165,8 @@ let addNewQuestion = (request,response) => {
         deleteQuestionForm,
         deleteQuestion,
         newQuestionForm,
-        addNewQuestion
+        addNewQuestion,
+        voteQuestionForm,
+        voteQuestion
     }
 }

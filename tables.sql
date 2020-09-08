@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS questions (
     user_id INTEGER,
     topic TEXT,
     question TEXT,
-    markdown TEXT
+    markdown TEXT,
+    vote INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS answers (
@@ -12,7 +13,8 @@ CREATE TABLE IF NOT EXISTS answers (
     user_id INTEGER,
     answer TEXT,
     verified TEXT,
-    markdown TEXT
+    markdown TEXT,
+    vote INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS accounts (

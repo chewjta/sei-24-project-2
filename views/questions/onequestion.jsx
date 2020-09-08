@@ -1,6 +1,6 @@
 var React = require("react");
 var marked = require('marked')
-var axios = require('axios');
+
 export default class Onequestion extends React.Component {
   render() {
     let {data,userId,type} = this.props;
@@ -17,7 +17,11 @@ const render = (obj) => {
   <div class="card-body">
     <div dangerouslySetInnerHTML={{__html: obj.question}}></div>
     <p class="card-text">Topic: {topic}</p>
+    <footer class="blockquote-footer">Current votes: {obj.questionvote}</footer>
     <div class="row d-flex justify-content-center align-items-center" >
+          <form method ="get" action= {`/questions/vote/${id}`}>
+          <input type="submit" value="vote" className="btn btn-primary" />
+          </form>
     <form method ="get" action= {`/questions/edit/${id}`} style={{margin:'0 20px'}}>
           <input type="submit" value="edit" className="btn btn-info" />
         </form>
@@ -33,6 +37,12 @@ const render = (obj) => {
   <div class="card-body">
     <div dangerouslySetInnerHTML={{__html: obj.question}}></div>
     <p class="card-text">Topic: {topic}</p>
+    <footer class="blockquote-footer">Current votes: {obj.questionvote}</footer>
+    <div class="row d-flex justify-content-center align-items-center" >
+          <form method ="get" action= {`/questions/vote/${id}`}>
+          <input type="submit" value="vote" className="btn btn-primary" />
+          </form>
+          </div>
   </div>
 </div>
     }
@@ -43,7 +53,11 @@ const render = (obj) => {
   <div class="card-body">
     <h5 class="card-title">{obj.question}</h5>
     <p class="card-text">Topic: {topic}</p>
+    <footer class="blockquote-footer">Current votes: {obj.questionvote}</footer>
     <div class="row d-flex justify-content-center align-items-center" >
+    <form method ="get" action= {`/questions/vote/${id}`}>
+          <input type="submit" value="vote" className="btn btn-primary" />
+          </form>
     <form method ="get" action= {`/questions/edit/${id}`} style={{margin:'0 20px'}}>
           <input type="submit" value="edit" className="btn btn-info" />
         </form>
@@ -59,6 +73,12 @@ const render = (obj) => {
   <div class="card-body">
     <h5 class="card-title">{obj.question}</h5>
     <p class="card-text">Topic: {topic}</p>
+    <footer class="blockquote-footer">Current votes: {obj.questionvote}</footer>
+        <div class="row d-flex justify-content-center align-items-center" >
+          <form method ="get" action= {`/questions/vote/${id}`}>
+          <input type="submit" value="vote" className="btn btn-primary" />
+          </form>
+          </div>
   </div>
 </div>
     }
@@ -75,17 +95,19 @@ question = render(question)
                 if(item.markdown){
                 if(item.verified){
                 item.answer=marked(item.answer)
-
             return <div class="card text-center">
                   <div class="card-header">
                   </div>
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <div style={{color:'green'}}dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                      <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/vote/${item.answersid}`}>
+                          <input type="submit" value="vote" className="btn btn-primary" />
+                        </form>
                     <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
-
                           <input type="submit" value="edit" className="btn btn-info" />
                         </form>
                         <form method ="get" action= {`/answers/delete/${item.answersid}`}>
@@ -102,8 +124,12 @@ question = render(question)
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <div dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                      <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >
+                     <form method ="get" action= {`/answers/vote/${item.answersid}`}>
+                          <input type="submit" value="vote" className="btn btn-primary" />
+                        </form>
                     <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
                           <input type="submit" value="edit" className="btn btn-info" />
                         </form>
@@ -122,8 +148,12 @@ question = render(question)
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <div style={{color:'green'}}> {item.answer}</div>
+                      <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >
+                        <form method ="get" action= {`/answers/vote/${item.answersid}`}>
+                          <input type="submit" value="vote" className="btn btn-primary" />
+                        </form>
                     <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
                           <input type="submit" value="edit" className="btn btn-info" />
                         </form>
@@ -141,8 +171,12 @@ question = render(question)
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <div> {item.answer}></div>
+                      <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/vote/${item.answersid}`}>
+                          <input type="submit" value="vote" className="btn btn-primary" />
+                        </form>
                     <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
                           <input type="submit" value="edit" className="btn btn-info" />
                         </form>
@@ -164,7 +198,13 @@ question = render(question)
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <div style={{color:'green'}} dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                      <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
+                    <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/vote/${item.answersid}`}>
+                          <input type="submit" value="vote" className="btn btn-primary" />
+                        </form>
+                        </div>
                   </div>
                 </div>
      } item.answer=marked(item.answer);
@@ -175,7 +215,13 @@ question = render(question)
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <div dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                      <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
+                    <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/vote/${item.answersid}`}>
+                          <input type="submit" value="vote" className="btn btn-primary" />
+                        </form>
+                        </div>
                   </div>
                 </div>
      } else {
@@ -188,7 +234,13 @@ question = render(question)
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <div style={{color:'green'}}> {item.answer}</div>
+                      <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
+                    <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/vote/${item.answersid}`}>
+                          <input type="submit" value="vote" className="btn btn-primary" />
+                        </form>
+                        </div>
                   </div>
                 </div>
         </div>
@@ -200,7 +252,13 @@ question = render(question)
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
                       <div> {item.answer}></div>
+                      <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
+                    <div class="row d-flex justify-content-center align-items-center" >
+                    <form method ="get" action= {`/answers/vote/${item.answersid}`}>
+                          <input type="submit" value="vote" className="btn btn-primary" />
+                        </form>
+                        </div>
                   </div>
                 </div>
      }

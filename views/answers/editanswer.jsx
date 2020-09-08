@@ -30,7 +30,7 @@ let verified = verify(type);
             <div className="card-body">
         <form method="POST" id="editform" action={`/answers/edit/${id}?_method=put`}>
     <span style={{fontSize:'32px'}}>Question: {question}</span> <br /> <br />
-    Edited Answer: <br /><textarea type="text" name="answer" defaultValue={answer} form="editform" class="form-control" rows='6'></textarea> <br /> <br />
+    Edited Answer: <br /><textarea type="text" name="answer" defaultValue={answer} form="editform" class="form-control" rows='6' required></textarea> <br /> <br />
     Question ID: <input type="text" name="question_id" class="form-control"defaultValue={questionid} readonly="readonly" /> <br /> <br />
     Answer ID: <input type="text" name="answer_id" defaultValue={id} class="form-control" readonly="readonly" />
     <br /> <br />
