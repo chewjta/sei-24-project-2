@@ -81,12 +81,45 @@ let deleteAnswer = (request,response) => {
 }
 
 
+let voteAnswerForm = (request,response) => {
+    let {id} = request.params;
+    let {logIn} = request.cookies;
+    db.answers.getVoteAnswerForm(id,(err,result)=>{
+     if(err){
+         console.log(err)
+         response.status(500).send("Oops we did not find the answer you were looking for")
+            } else {
+                if(logIn){
+                   response.render('answers/voteanswer',{data:result.rows[0]})
+               } else {
+                response.redirect('/accounts/login')
+               }
+
+            }
+        })
+
+}
+
+let voteAnswer = (request,response) => {
+    let {id,vote,question_id} = request.body;
+    db.answers.getVoteAnswer(id,vote,(err,result)=>{
+         if (err){
+            response.status(500).send("oops error in deleting answer!")}
+             else {
+                response.redirect(`/questions/${question_id}`)
+            }
+    })
+}
+
+
     return{
         answerForm,
         answerAdded,
         editAnswer,
         editAnswerForm,
         deleteAnswer,
-        deleteAnswerForm
+        deleteAnswerForm,
+        voteAnswerForm,
+        voteAnswer
     }
 }

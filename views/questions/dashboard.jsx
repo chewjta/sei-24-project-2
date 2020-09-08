@@ -59,9 +59,9 @@ let questionsList = data.map(item=>{
     if(!item.answer){
     if(item.markdown){
             item.question=marked(item.question);
-            return (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a></li>)
+            return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a></li>)
         } else {
-        return (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
+        return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
     }
 }
 })
@@ -72,9 +72,9 @@ let verifyList = data.map(item=>{
     if(item.answer && !item.verified){
         if(item.markdown){
             item.question=marked(item.question);
-            return (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a></li>)
+            return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}><div dangerouslySetInnerHTML={{__html: item.question}}></div></a></li>)
         } else {
-        return (<li className="list-group-item font-weight-lighter"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
+        return (<li className="list-group-item font-weight-lighter text-wrap"><a href={`/questions/${item.questionid}`}>{item.question}</a></li>)
     }
 }
 }
@@ -154,8 +154,8 @@ const quotesArr = [
         </div>
         </div>
 
-        <div className='d-flex justify-content-center'>
-            <div class="card text-center">
+
+            <div class="card text-center" style={{margin:'10px auto',width:'1350px'}}>
               <div class="card-header">
                 Featured Questions of the Day
               </div>
@@ -170,7 +170,7 @@ const quotesArr = [
               </div>
             </div>
 
-                <div class="card" style={{height:'200px',marginLeft:'10px'}}>
+                <div class="card" style={{margin:'10px auto',height:'200px',width:'1350px'}}>
                   <div class="card-header">
                     Quote of the Day
                   </div>
@@ -186,7 +186,7 @@ const quotesArr = [
                     </form>
                 </div>
 
-                </div>
+
 
           <script>
           var answeredNum = {answered};

@@ -29,14 +29,15 @@ module.exports = (db) => {
 
     let individualQuestion = (request,response) => {
         let {id} = request.params;
-        let {userId,logIn} = request.cookies;
+        let {userId,logIn,type} = request.cookies;
         db.questions.getIndividualQuestion(id,(err,result)=>{
             if(err){
                 console.log(err)
                 response.status(500).send("Oops we did not find the question you were looking for")
             } else {
                 if(logIn){
-                    response.render('questions/onequestion',{userId,data:result.rows})
+                    console.log(type)
+                    response.render('questions/onequestion',{userId,type,data:result.rows})
                 } else {
                     response.redirect('/accounts/login')
                 }

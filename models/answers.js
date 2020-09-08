@@ -47,12 +47,30 @@ let getDeleteAnswer = (answer_id,callback) => {
 }
 
 
+let getVoteAnswerForm = (id,callback) => {
+    let query = `SELECT questions.question,answers.answer,answers.id,answers.vote,questions.id AS questionid FROM questions INNER JOIN answers ON questions.id = answers.question_id WHERE answers.id = '${id}'`
+    dbPoolInstance.query(query,(err, result) => {
+        callback(err,result)
+    })
+}
+
+
+let getVoteAnswer = (id,vote,callback) => {
+    let query = `UPDATE answers SET vote = COALESCE(vote,0) + ${vote} WHERE id ='${id}'`
+    dbPoolInstance.query(query,(err, result) => {
+        callback(err,result)
+    })
+}
+
+
     return {
         getAnswerForm,
         getAnswerAdded,
         getEditAnswerForm,
         getEditAnswer,
         getDeleteAnswerForm,
-        getDeleteAnswer
+        getDeleteAnswer,
+        getVoteAnswerForm,
+        getVoteAnswer
     }
 }

@@ -37,6 +37,7 @@ app.get('/questions/:id',questionsControllerCallbacks.individualQuestion)
 app.get('/dashboard', questionsControllerCallbacks.dashboard)
 app.get('/questions',questionsControllerCallbacks.allQuestions)
 app.post('/logout',accountsControllerCallbacks.logout);
+
 app.get('/answers/add/:id',answersControllerCallbacks.answerForm)
 app.post('/answers/add',answersControllerCallbacks.answerAdded)
 app.get('/answers/edit/:id',answersControllerCallbacks.editAnswerForm)
@@ -45,8 +46,12 @@ app.get('/answers/delete/:id',answersControllerCallbacks.deleteAnswerForm)
 app.delete('/answers/delete/:id',answersControllerCallbacks.deleteAnswer)
 
 
-
+app.get('/answers/vote/:id',answersControllerCallbacks.voteAnswerForm)
+app.put('/answers/vote/:id',answersControllerCallbacks.voteAnswer)
 app.get('/students/dashboard',studentsControllerCallbacks.studentDashboard)
+
+
+
 
 
 // app.post('/login',accountsControllerCallbacks.login);

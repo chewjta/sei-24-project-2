@@ -146,8 +146,8 @@ const quotesArr = [{
         </div>
 
 
- <div className='d-flex justify-content-center'>
-            <div class="card text-center" style={{marginRight:'40px'}}>
+
+            <div class="card text-center" style={{margin:'10px auto', width:'900px'}}>
               <div class="card-header">
                 My questions
               </div>
@@ -160,16 +160,16 @@ const quotesArr = [{
               </div>
             </div>
 
-                <div class="card" style={{height:'300px',width:'400px', marginRight:'40px'}}>
+                <div class="card" style={{height:'400px',width:'900px', margin:'10px auto'}}>
                   <div class="card-header">
-                    MY responses
+                    My responses
                   </div>
                   <div class="card-body">
                     {answerList}
                   </div>
                 </div>
 
-                <div class="card" style={{height:'200px'}}>
+                <div class="card" style={{height:'250px', width:'900px',margin:'10px auto'}}>
                   <div class="card-header">
                     Quote of the Day
                   </div>
@@ -179,13 +179,14 @@ const quotesArr = [{
                       <footer class="blockquote-footer">{quotesArr[Math.floor((Math.random()*10))].author}</footer>
                     </blockquote>
 
-                  </div>
-                  <form method ="post" action= "/logout" class="text-center" >
+                    <form method ="post" action= "/logout" class="text-center" >
                       <input type="submit" value="Logout" class="btn btn-danger"/>
                     </form>
-                </div>
+
+                  </div>
 
                 </div>
+
 
           <script>
           var answeredNum = {myAnswer};

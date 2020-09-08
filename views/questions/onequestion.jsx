@@ -1,9 +1,9 @@
 var React = require("react");
 var marked = require('marked')
+var axios = require('axios');
 export default class Onequestion extends React.Component {
   render() {
-    let {data,userId} = this.props;
-
+    let {data,userId,type} = this.props;
     let question = data[0];
     let topic = data[0].topic;
        let id = data[0].id;
@@ -71,13 +71,13 @@ question = render(question)
 
     let answersList = data.map(item=>{
         if(item.answer){
-            if(item.answerer == userId){
+            if(item.answerer == userId || type == 'teacher'){
                 if(item.markdown){
                 if(item.verified){
                 item.answer=marked(item.answer)
+
             return <div class="card text-center">
                   <div class="card-header">
-                    Answer
                   </div>
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
@@ -85,6 +85,7 @@ question = render(question)
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >
                     <form method ="get" action= {`/answers/edit/${item.answersid}`} style={{margin:'0 20px'}}>
+
                           <input type="submit" value="edit" className="btn btn-info" />
                         </form>
                         <form method ="get" action= {`/answers/delete/${item.answersid}`}>
@@ -239,6 +240,7 @@ question = render(question)
         </form>
           </div>
             </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
         <script src="/questionscript.js"></script>
         </body>
       </html>
