@@ -61,6 +61,7 @@ module.exports = (db) => {
 
 let editQuestion = (request,response) => {
     let {question,topic,question_id} = request.body;
+    topic = topic.toLowerCase();
     db.questions.getEditQuestion(question,topic,question_id,(err,result)=>{
         if (err){
             response.status(500).send("oops error in updating question!")}
@@ -112,6 +113,7 @@ let newQuestionForm = (request,response) => {
 let addNewQuestion = (request,response) => {
     let {userId} = request.cookies;
     let {question,topic,markdown} = request.body;
+    topic = topic.toLowerCase();
     question = question.replace(/[\"\'\`]/g, "");
     db.questions.getAddNewQuestion(userId,question,topic,markdown,(err,result)=>{
         if(err){
