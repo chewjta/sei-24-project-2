@@ -4,12 +4,13 @@ var marked = require('marked')
 export default class Onequestion extends React.Component {
   render() {
     let {data,userId,type} = this.props;
+    console.log(data)
     let question = data[0];
     let topic = data[0].topic;
        let id = data[0].id;
 
 const render = (obj) => {
-    if(obj.markdown){
+    if(obj.qnmarkdown){
         obj.question = marked(obj.question);
          if(obj.questioner == userId){
         return <div class="card text-center">
@@ -100,7 +101,7 @@ question = render(question)
                   </div>
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                      <div style={{color:'green'}}dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                      <div style={{color:'#0FF900',border:'1px solid #0FF900'}}dangerouslySetInnerHTML={{__html: item.answer}}></div>
                       <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >
@@ -147,7 +148,7 @@ question = render(question)
                   </div>
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                      <div style={{color:'green'}}> {item.answer}</div>
+                      <div style={{color:'#0FF900',border:'1px solid #0FF900'}}> {item.answer}</div>
                       <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >
@@ -197,7 +198,7 @@ question = render(question)
                   </div>
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                      <div style={{color:'green'}} dangerouslySetInnerHTML={{__html: item.answer}}></div>
+                      <div style={{color:'#0FF900',border:'1px solid #0FF900'}} dangerouslySetInnerHTML={{__html: item.answer}}></div>
                       <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >
@@ -233,7 +234,7 @@ question = render(question)
                   </div>
                   <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                      <div style={{color:'green'}}> {item.answer}</div>
+                      <div style={{color:'#0FF900',border:'1px solid #0FF900'}}> {item.answer}</div>
                       <footer class="blockquote-footer">Current votes: {item.vote}</footer>
                     </blockquote>
                     <div class="row d-flex justify-content-center align-items-center" >

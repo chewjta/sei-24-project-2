@@ -14,7 +14,7 @@ let getAllQuestions = (callback) => {
 }
 
 let getIndividualQuestion = (id,callback)=>{
-    let query = `SELECT questions.topic, questions.question,answers.answer,questions.id,answers.id AS answersId,answers.markdown,answers.verified,answers.user_id AS answerer,questions.user_id AS questioner,answers.vote, questions.vote AS questionvote FROM questions LEFT JOIN answers ON questions.id = answers.question_id WHERE questions.id = '${id}' ORDER BY answers.vote DESC NULLS LAST`
+    let query = `SELECT questions.topic, questions.question,answers.answer,questions.id,answers.id AS answersId,answers.markdown, questions.markdown AS qnmarkdown,answers.verified,answers.user_id AS answerer,questions.user_id AS questioner,answers.vote, questions.vote AS questionvote FROM questions LEFT JOIN answers ON questions.id = answers.question_id WHERE questions.id = '${id}' ORDER BY answers.vote DESC NULLS LAST`
     dbPoolInstance.query(query,(err,result)=>{
     callback(err,result)
 })
