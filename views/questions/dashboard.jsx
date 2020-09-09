@@ -143,6 +143,8 @@ const quotesArr = [
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
         </head>
         <body>
+
+
         <h2 className="text-center font-weight-lighter">Good Morning <span class="text-capitalize">{this.props.user}</span>, What's on your mind today?</h2>
         <h4 className="text-center font-weight-light">{date} &nbsp; &nbsp;<p id="span" className="text-center font-weight-light" style={{display:'inline-block'}}></p></h4>
         <div className="d-flex justify-content-center">

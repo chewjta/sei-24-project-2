@@ -86,7 +86,7 @@ export default class Home extends React.Component {
             <h4 class="my-0 font-weight-normal">Student</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">$3.99 <small class="text-muted">/ mo</small></h1>
+            <h1 class="card-title pricing-card-title">FREE</h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>Markdown mode included</li>
               <li>30 questions per month</li>
@@ -103,7 +103,7 @@ export default class Home extends React.Component {
             <h4 class="my-0 font-weight-normal">Teacher</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">$9.99 <small class="text-muted">/ mo</small></h1>
+            <h1 class="card-title pricing-card-title">FREE</h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>Verify mode</li>
               <li>Customised dashboard mode</li>
