@@ -10,7 +10,7 @@ export default class Onequestion extends React.Component {
        let id = data[0].id;
 
 const render = (obj) => {
-    if(obj.qnmarkdown){
+    if(obj.qnmarkdown != 'undefined' && obj.qnmarkdown != null){
         obj.question = marked(obj.question);
          if(obj.questioner == userId){
         return <div class="card text-center">
@@ -93,7 +93,7 @@ question = render(question)
     let answersList = data.map(item=>{
         if(item.answer){
             if(item.answerer == userId || type == 'teacher'){
-                if(item.markdown){
+                if(item.markdown != 'undefined' && item.markdown != null){
                 if(item.verified){
                 item.answer=marked(item.answer)
             return <div class="card text-center">
