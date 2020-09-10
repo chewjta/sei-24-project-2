@@ -21,13 +21,14 @@ Many times be it in school or work, we have open discussions/conversations where
 
 ### Initialization
 
-Fork it and run npm run start in terminal to load up the main page.
+Fork it and type `npm run start` in terminal to load up the main page.
 
 Alternatively, visit [Console.Log](https://qnalvis.herokuapp.com/). Hosted on Heroku.
 
-![demo](demo2.gif)
 
 ## Features
+
+![demo](demo2.gif)
 
 Start By creating an account and select type as either teacher or student depending who you are.
 
