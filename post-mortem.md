@@ -91,7 +91,7 @@ const studentsModelsObject = allStudentsModelsFunction( pool );
 ```
 
 
-## WDI Unit 1 Post Mortem
+## WDI Unit 2 Post Mortem
 
 1. What habits did I use during this unit that helped me?
 
