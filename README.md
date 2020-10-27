@@ -16,7 +16,7 @@ Console.Log is an online platform for students and teachers to openly discuss qu
 
 ### Inspiration
 
-Many times be it in school or work, we have open discussions/conversations where there are useful data which we can refer to in future projects or exams revisions that are lost since there is usually no official note taker.
+Many times be it in school or work, we have open discussions/conversations where there are useful data that we can refer to in future projects or exams revisions that are lost.
 
 
 ### Initialization
