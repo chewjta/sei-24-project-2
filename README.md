@@ -43,5 +43,5 @@ Last but not least, teachers also have the added functionality to verify the bes
 
 ## Tech stacks used
 
-Javascript, ReactJS, Bootstrap, PostgreSQL
+Javascript, React JS, Express/Node JS, PostgreSQL
 
